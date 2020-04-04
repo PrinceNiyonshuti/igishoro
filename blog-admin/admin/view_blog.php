@@ -43,13 +43,14 @@
 
                                         echo "<div class='table-stats order-table ov-h'>";
                                             echo "<table id='bootstrap-data-table' class='table'>";
-                                            echo "<caption>Igishoro Blog List</caption>";
                                                 echo "<thead>";
                                                    echo " <tr>";
                                                         echo "<th>Cover</th>";
                                                         echo "<th>Blog Tittle</th>";
                                                         echo "<th>Short Descrption</th>";
                                                         echo "<th>Date</th>";
+                                                        echo "<th>Action</th>";
+                                                        echo "<th>Action</th>";
                                                        
                                                     echo "</tr>";
                                                 echo "</thead>";
@@ -57,12 +58,21 @@
                                                     $sql="SELECT * FROM wp_blog ";
                                                         $result=$conn->query($sql);
                                                         while ($row = $result->fetch_assoc()) {
+                                                            $b_descr=$row['blog_descr'];
+                                                            $b_descr=substr($b_descr,0,50);
+                                                            $b_id=$row['blog_id'];
 
                                                     echo "<tr>";
                                                         echo "<td><img src='../../blog_photo/".$row['blog_photo']."' style='height:50px;width:100%;padding:0px;margin:0px;'></td>";
                                                         echo "<td>".$row['blog_tittle']."</td>";
-                                                        echo "<td>".$row['blog_descr']."</td>";
+                                                        echo "<td>".$b_descr." ...</td>";
                                                         echo "<td>".$row['blog_date']."</td>";
+                                                        echo "<td>
+                                                            <a href='index.php?update_blog&&blog_holder=$b_id'><i class='menu-icon fa fa-file'></i> Edit</a>
+                                                        </td>";
+                                                        echo "<td>
+                                                            <a href='index.php?delete_blog&blog_holder=$b_id'><i class='menu-icon fa fa-trash'></i> Delete</a>
+                                                        </td>";
                                                     echo "</tr>";
                                                         }
                                                 echo "</tbody>";

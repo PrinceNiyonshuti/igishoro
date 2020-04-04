@@ -1,3 +1,6 @@
+<?php
+  include "blog-admin/config/config.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,14 +47,12 @@
       </div>
       <div class="site-mobile-menu-body"></div>
     </div>
-
-
     
     <div class="header-top">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-12 col-lg-6 d-flex">
-            <a href="index.html" class="site-logo">
+            <a href="index.php" class="site-logo" style="font-weight: bold;font-size: 40px;">
               Igishoro
             </a>
 
@@ -101,25 +102,50 @@
                 <li>
                   <a href="index.php?about" class="nav-link text-left">About</a>
                 </li>
-                <li>
-                  <a href="index.php?category" class="nav-link text-left">Money</a>
                 </li>
-                <li>
-                  <a href="#" class="nav-link text-left has-children">My Account</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="index.php?profile"> Profile</a></li>
-                        <li><a href="#"> Rooms</a></li>
-                    </ul>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Money
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">How To Save More Money</a>
+                    <a class="dropdown-item" href="#">How To Budget For Your Money</a>
+                    <a class="dropdown-item" href="#">How To Manage Your Money</a>
+                    <a class="dropdown-item" href="#">How To Make More Money</a>
+                  </div>
                 </li>
-                <li>
-                  <a href="index.php?category" class="nav-link text-left">Start Your Bussiness</a>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Start Your Bussiness
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Bussiness Ideas</a>
+                    <a class="dropdown-item" href="#">Start-Up Basics</a>
+                    <a class="dropdown-item" href="#">Start-Up Funding</a>
+                    <a class="dropdown-item" href="#">How To Grow Your Bussiness</a>
+                  </div>
                 </li>
-                <li>
-                    <a href="index.php?category" class="nav-link text-left">Inspire</a>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Inspire
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Motivational Quotes</a>
+                    <a class="dropdown-item" href="#">Entrepreneurial Stories To Inspire You</a>
+                    <a class="dropdown-item" href="#">Passion And Talent</a>
+                  </div>
                 </li>
-                <li><a href="index.php?category" class="nav-link text-left">Career</a></li>
-                <li>
-                  <a href="index.php?category" class="nav-link text-left">Post</a>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Career
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Education</a>
+                    <a class="dropdown-item" href="#">Entrepreneur Ship Club</a>
+                    <a class="dropdown-item" href="#">Retirement</a>
+                  </div>
+                </li>                <li>
+                  <a href="index.php?post" class="nav-link text-left">Post</a>
                 </li>
                 <li><a href="index.php?contact" class="nav-link text-left">Contact</a></li>
               </ul>                                                                                                                                                                                                                                                                                         
@@ -166,9 +192,9 @@
         include("contact.php");
       }
 
-    elseif(isset($_GET['']))
+    elseif(isset($_GET['post']))
       {           
-        include("");
+        include("post.php");
       }
 
     elseif(isset($_GET['']))

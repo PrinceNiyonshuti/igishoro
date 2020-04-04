@@ -1,13 +1,69 @@
+<?php
+
+    $blog_data=$_GET['blog_holder'];
+    
+    // Use openssl_decrypt() function to decrypt the data 
+    $decryption=openssl_decrypt($blog_data, "AES-128-ECB", DONE);
+
+    if (empty($blog_data)) {
+      ?>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 single-content">
+
+            <div class="section-title">
+              <h2>Sorry Nothing We Did Catch , Please Choose Again The Blog</h2>
+            </div>
+
+            <div class="trend-entry d-flex">
+              <div class="trend-contents">
+                <h2><a href="blog-single.html">This Blog You Want To View Can't Be Given t This Time</a></h2>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+      <?php
+    } else {
+ ?>
+ 
+ <?php   
+    
+                $sql1="SELECT * FROM `wp_blog` WHERE blog_id='$blog_data'";
+                    $result1=$conn->query($sql1);
+
+                    while ($row1 = $result1->fetch_assoc()) {
+                    $b_id=$row1['blog_id'];
+                    $b_tittle=$row1['blog_tittle'];
+                    $b_content=$row1['blog_content'];
+                    $b_photo=$row1['blog_photo'];
+                    $b_date=$row1['blog_date'];
+                    $b_date = date('M d', strtotime($b_date)); 
+                    
+                    if (empty($b_photo)) {
+                        $blog_cover = "test1.jpg";
+                    } else {
+                        $blog_cover = "$b_photo";
+                    }
+
+                    }
+
+if($result1->num_rows == 1){
+?>
 <div class="site-section">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 single-content">
             
             <p class="mb-5">
-              <img src="images/big_img_1.jpg" alt="Image" class="img-fluid">
+              <img src="blog_photo/<?php echo $blog_cover ?>" style="width: 730px;height: 438px;" alt="Image" class="img-fluid">
             </p>  
             <h1 class="mb-4">
-              News Needs to Meet Its Audiences Where They Are
+              <?php echo $b_tittle ?>
             </h1>
             <div class="post-meta d-flex mb-5">
               <div class="bio-pic mr-3">
@@ -15,25 +71,15 @@
               </div>
               <div class="vcard">
                 <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
+                <span class="date-read"><?php echo $b_date ?> <span class="mx-1">&bullet;</span>  <span class="icon-star2"></span></span>
               </div>
             </div>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit officia neque beatae at inventore excepturi numquam sint commodi alias, quam consequuntur corporis ex, distinctio eaque sapiente pariatur iure ad necessitatibus in quod obcaecati natus consequatur. Sed dicta maiores, eos culpa.</p>
-            <p>Voluptatum animi, voluptate sint aperiam facere a nam, ex reiciendis eum nemo ipsum nobis, rem illum cupiditate at quaerat amet qui recusandae hic, atque laboriosam perspiciatis? Esse quidem minima, voluptas necessitatibus, officia culpa quo nulla, cupiditate iste vel unde magni.</p>
-            <p>Nulla nesciunt eligendi ratione, atque, hic, ullam suscipit quos enim vitae fugiat ducimus, dolore delectus iste id culpa. Ducimus, iste magnam sed reprehenderit architecto perferendis odio voluptas molestiae quidem ab numquam debitis, dolorem incidunt, tempore a quod qui nobis. Voluptates!</p>
-            <p>Blanditiis, ipsum sed odio reprehenderit sequi ut vitae, dolor minima ab! Architecto nesciunt nemo sint est aspernatur fugit consequatur, magnam suscipit asperiores illo eum repellendus officia dolorem, molestiae commodi nam voluptatem quis quia vel cumque quos, aliquam ex incidunt sapiente!</p>
-            <p>Suscipit, officiis, vero! Perferendis accusamus quos voluptatum culpa, provident maiores! Illo itaque ullam fugit molestiae, eaque accusamus impedit autem numquam. Placeat molestias tempore eaque ipsam vel voluptatum velit enim quam iusto maxime delectus, sint sapiente ea, quo excepturi nisi! Quia.</p>
-            <p>Dolores debitis excepturi maxime earum sapiente totam, quos dolore inventore tempore illum. Dolores explicabo sed amet aut atque, facere aliquid repudiandae quod possimus quo hic similique et voluptates fugit iure dolore quam ipsa numquam assumenda corporis? Dignissimos expedita fugit sapiente.</p>
-            <p>Cupiditate ut, aspernatur labore obcaecati, eveniet aut velit nulla facere suscipit est recusandae vel error itaque earum doloremque hic necessitatibus dignissimos dolores libero laudantium ducimus! Rem dolorem ratione officia et, fugit non, fuga suscipit eos veritatis enim perspiciatis, magni sit!</p>
-
-
-
-            <div class="pt-5">
+            <div style="color: black;">
+              <p style="text-align: justify;font-size: 15px;"><?php echo $b_content ?></p>
+            </div>
+                  <div class="pt-5">
                     <p>Categories:  <a href="#">Design</a>, <a href="#">Events</a>  Tags: <a href="#">#html</a>, <a href="#">#trends</a></p>
                   </div>
-      
-      
                   <div class="pt-5">
                     <div class="section-title">
                       <h2 class="mb-5">6 Comments</h2>
@@ -211,3 +257,32 @@
         
       </div>
     </div>
+    <?php
+    } else {
+
+ ?>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 single-content">
+
+            <div class="section-title">
+              <h2>Sorry The Blog You Want To Access Doesn't Exist</h2>
+            </div>
+
+            <div class="trend-entry d-flex">
+              <div class="trend-contents">
+                <h2><a href="blog-single.html">This Blog You have Selected Have Been Removed By The Owner.</a></h2>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <?php
+  }
+      }
+    ?>

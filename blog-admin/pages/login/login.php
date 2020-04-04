@@ -74,17 +74,12 @@ if ($row4 = $result4->fetch_assoc()) {
     $username_real=$row4['username'];
     $password_real=$row4['password'];
 
-    //$sql="INSERT INTO logs_table (`name`,`name1`,`utype`,`date`,`time`,`status`) VALUES('$first_name','$last_name','$user_type','$d','$t','System Admin')";
-
-    //if ($conn->query($sql)===TRUE) {
-                         
-    //}
 
 }
 
 if ($username===$username_real and $password===$password_real){
 
-        $_SESSION['FUEL_ADMIN_USER_2020']=$username;
+        $_SESSION['IGISHORO_BLOG_ADMIN_PANEL_PRINCE_2020']=$username;
        
         ?>
         <div class="alert alert-success" role="alert">

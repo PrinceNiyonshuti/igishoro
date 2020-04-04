@@ -11,7 +11,7 @@ if(isset($_GET["sign"]))
   $sign=$_GET["sign"];
   if($sign=="out")
   {
-        unset($_SESSION["FUEL_ADMIN_USER_2020"]);
+        unset($_SESSION["IGISHORO_BLOG_ADMIN_PANEL_PRINCE_2020"]);
     
     header("location:../index.php");}
     }
@@ -19,7 +19,7 @@ if(isset($_GET["sign"]))
 
 // For checking if the user logged in
 
-if(isset($_SESSION['FUEL_ADMIN_USER_2020']) == false){
+if(isset($_SESSION['IGISHORO_BLOG_ADMIN_PANEL_PRINCE_2020']) == false){
     header("Location:../index.php");
 }else{
     ?>
@@ -61,7 +61,7 @@ if(isset($_SESSION['FUEL_ADMIN_USER_2020']) == false){
 
                     <?php
 
-                            $sql5="SELECT * from user where username='$_SESSION[FUEL_ADMIN_USER_2020]'";
+                            $sql5="SELECT * from user where username='$_SESSION[IGISHORO_BLOG_ADMIN_PANEL_PRINCE_2020]'";
                             $result5=$conn->query($sql5);
 
 
@@ -131,30 +131,36 @@ if(isset($_SESSION['FUEL_ADMIN_USER_2020']) == false){
         <!-- Header-->
 
     <?php
-	   if(isset($_GET['home']))
-		{
-			include("home.php");
-		}
+	   
+       if(isset($_GET['home']))
+        {
+            include("home.php");
+        }
 
-		elseif(isset($_GET['new_blog']))
+        elseif(isset($_GET['new_blog']))
         {           
             include("new_blog.php");
         }
 
-		elseif(isset($_GET['view_blog']))
+        elseif(isset($_GET['view_blog']))
         {           
             include("view_blog.php");
         }
 
-		elseif(isset($_GET['view_blog_s']))
+        elseif(isset($_GET['update_blog']))
         {           
-            include("search_blog.php");
+            include("update_blog.php");
         }
 
-		else
-		{
-			include("home.php");
-		}
+        elseif(isset($_GET['delete_blog']))
+        {           
+            include("delete_blog.php");
+        }
+
+        else
+        {
+            include("home.php");
+        }
 
 	?> 
 
@@ -165,10 +171,10 @@ if(isset($_SESSION['FUEL_ADMIN_USER_2020']) == false){
             <div class="footer-inner bg-white">
                 <div class="row">
                     <div class="col-sm-6">
-                        Copyright &copy; <?php echo  date("Y"); ?> NIKAO Ltd
+                        Copyright &copy; <?php echo  date("Y"); ?> Igishoro
                     </div>
                     <div class="col-sm-6 text-right">
-                        Designed by <a href="http://nikao.rw" target="_blank">NIKAO</a>
+                        Designed by <a href="https://github.com/PrinceNiyonshuti" target="_blank">NP Tech</a>
                     </div>
                 </div>
             </div>
@@ -213,6 +219,17 @@ if(isset($_SESSION['FUEL_ADMIN_USER_2020']) == false){
 	<script src='../js/jspdf.min.js'></script>
 
 
+            <!--  Rich Text area -->
+    <script type="text/javascript" src="../asset/src/jquery.min.js"></script>
+    <script type="text/javascript" src="../asset/src/jquery.richtext.js"></script>
+    <link rel="stylesheet" href="../asset/src/richtext.min.css">
+
+
+<script>
+    $(document).ready(function() {
+        $('.rich_text_area').richText();
+    });
+</script>
 
 <script>
 var base64Img = null;

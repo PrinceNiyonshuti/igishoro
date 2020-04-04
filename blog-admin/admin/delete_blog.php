@@ -26,43 +26,10 @@
 <body>
 <?php
 
-include "../config/config.php";
+    $blog_data=$_GET['blog_holder'];
 
-    $b_tittle = $_POST['b_tittle'];
-    $b_descr = $_POST['b_descr'];
-    $b_content = $_POST['b_content'];
 
-    if(empty($_FILES['profile']['name'])||empty($b_tittle)||empty($b_descr)||empty($b_content)) {
-    
-        ?>
-        <div class="content">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
-                        <a href="index.php?new_blog"><span class="badge badge-pill badge-danger">Alert</span> You have not filled all fields .
-                            <button type="button" class="close"  style="" >
-                                <span aria-hidden="true">&times;</span>
-                             </button></a>
-                        <br>
-                    </div>
-                </div>
-            </div>
-        </div>
-            
-        <?php  
-    }
-    else
-    {
-	
-        $profile=$_FILES['profile'];
-        $file_name = $_FILES['profile']['name'];    
-        $file_location = $_FILES['profile']['tmp_name'];
-        $new_file_name = "$file_name";
-        
-        if(move_uploaded_file($file_location, "../../blog_photo/" . $new_file_name)){
-                            
-            $sql="INSERT INTO wp_blog(blog_tittle,blog_descr,blog_content,blog_photo)
-                VALUES('$b_tittle','$b_descr','$b_content','$new_file_name')";
+                $sql="DELETE FROM `wp_blog` WHERE `wp_blog`.`blog_id` = '$blog_data' ";
     
                     if ($conn->query($sql)==TRUE) 
                     {
@@ -71,7 +38,7 @@ include "../config/config.php";
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
-                                        <a href="index.php?new_blog"><span class="badge badge-pill badge-success">Done</span> You have succeffuly Created new Blog .
+                                        <a href="index.php?view_blog"><span class="badge badge-pill badge-success">Done</span> You have succeffuly Deleted This Blog .
                                             <button type="button" class="close"  style="" >
                                                 <span aria-hidden="true">&times;</span>
                                              </button></a>
@@ -100,8 +67,6 @@ include "../config/config.php";
                         </div>
                         <?php
                     }
-        }
-    }
 
 ?>
     <script src="../asset/js/vendor/jquery-2.1.4.min.js"></script>
