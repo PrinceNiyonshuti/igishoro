@@ -32,6 +32,7 @@ include "../config/config.php";
     $b_tittle = $_POST['b_tittle'];
     $b_descr = $_POST['b_descr'];
     $b_content = $_POST['b_content'];
+    $sub_cat_id = $_POST['sub_cat_id'];
 
     if(empty($_FILES['profile']['name'])||empty($b_tittle)||empty($b_descr)||empty($b_content)) {
     
@@ -62,7 +63,7 @@ include "../config/config.php";
         
         if(move_uploaded_file($file_location, "../../blog_photo/" . $new_file_name)){
                             
-            $sql="UPDATE `wp_blog` SET blog_tittle = '$b_tittle',blog_descr='$b_descr',blog_content='$b_content',blog_photo='$new_file_name' WHERE blog_id='$b_id' ";
+            $sql="UPDATE `wp_blog` SET blog_tittle = '$b_tittle',sub_cat_id = '$sub_cat_id',blog_descr='$b_descr',blog_content='$b_content',blog_photo='$new_file_name' WHERE blog_id='$b_id' ";
     
                     if ($conn->query($sql)==TRUE) 
                     {

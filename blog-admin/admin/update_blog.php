@@ -6,6 +6,7 @@
 
                     while ($row1 = $result1->fetch_assoc()) {
                     $b_id=$row1['blog_id'];
+                    $sub_cat_id=$row1['sub_cat_id'];
                     $b_tittle=$row1['blog_tittle'];
                     $b_descr=$row1['blog_descr'];
                     $b_content=$row1['blog_content'];
@@ -54,6 +55,32 @@
                                                     <div class="form-group">
                                                         <label for="cc-payment" class="control-label mb-1">Blog Tittle</label>
                                                         <input id="b_tittle" name="b_tittle" type="text" value="<?php echo $b_tittle ?>" class="form-control" aria-required="true" aria-invalid="false" >
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="cc-payment" class="control-label mb-1"> Sub Category Name</label>
+                                                        <select class="form-control"  id="sub_cat_id" name="sub_cat_id" data-placeholder="Choose one.." required>
+
+                                                            <?php
+                                                                $sql="SELECT * FROM sub_category where sub_cat_id ='$sub_cat_id'  ";
+                                                                    $result=$conn->query($sql);
+                                                                    while ($row4 = $result->fetch_assoc()) {
+                                                                        ?>
+                                                                            <option value="<?php echo $row4['sub_cat_id']; ?>"><?php echo $row4['sub_cat_name']; ?></option>
+                                                                        <?php
+                                                                    }
+                                                            ?> 
+                                                           
+                                                            <?php
+                                                                $sql="SELECT * FROM sub_category where sub_cat_id !='$sub_cat_id'  ";
+                                                                    $result=$conn->query($sql);
+                                                                    while ($row1 = $result->fetch_assoc()) {
+                                                                        ?>
+                                                                            <option value="<?php echo $row1['sub_cat_id']; ?>"><?php echo $row1['sub_cat_name']; ?></option>
+                                                                        <?php
+                                                                    }
+                                                            ?> 
+                                                        </select>
                                                     </div>
 
                                                     <div class="form-group">

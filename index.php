@@ -9,6 +9,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  
+  <link rel="apple-touch-icon" href="blog-admin/asset/images/log.png">
+  <link rel="shortcut icon" href="blog-admin/asset/images/log.png"> 
 
   <link href="https://fonts.googleapis.com/css?family=B612+Mono|Cabin:400,700&display=swap" rel="stylesheet">
 
@@ -52,8 +55,16 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-12 col-lg-6 d-flex">
-            <a href="index.php" class="site-logo" style="font-weight: bold;font-size: 40px;">
-              Igishoro
+            <a href="index.php" class="site-logo" style="font-weight: bold;font-size: 20px;">
+              <div class="row">
+                <div class="col-12 col-lg-6 d-flex">
+                  <img  src="images/logo.png" style="width: 40%;height: 70px">
+                </div>
+
+                <div class="col-12 col-lg-12 d-flex">
+                   Unlock Your Entrepreneurial Potential
+                </div>
+              </div>             
             </a>
 
             <a href="#" class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
@@ -62,9 +73,10 @@
           </div>
           <div class="col-12 col-lg-6 ml-auto d-flex">
             <div class="ml-md-auto top-social d-none d-lg-inline-block">
+              <a href="#" class="d-inline-block p-3"><span class="icon-whatsapp"></span></a>
               <a href="#" class="d-inline-block p-3"><span class="icon-facebook"></span></a>
-                <a href="#" class="d-inline-block p-3"><span class="icon-twitter"></span></a>
-                <a href="#" class="d-inline-block p-3"><span class="icon-instagram"></span></a>
+              <a href="#" class="d-inline-block p-3"><span class="icon-twitter"></span></a>
+              <a href="#" class="d-inline-block p-3"><span class="icon-instagram"></span></a>
             </div>
             <form action="#" class="search-form d-inline-block">
 
@@ -93,62 +105,55 @@
           <div class="mr-auto">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
-                <li class="active">
-                  <a href="index.php" class="nav-link text-left">Home</a>
-                </li>
-                <li>
-                  <a href="index.php?category" class="nav-link text-left">Blog</a>
-                </li>
-                <li>
-                  <a href="index.php?about" class="nav-link text-left">About</a>
-                </li>
-                </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Money
+                  <a class="nav-link dropdown-toggle" href="index.php" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Home
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">How To Save More Money</a>
-                    <a class="dropdown-item" href="#">How To Budget For Your Money</a>
-                    <a class="dropdown-item" href="#">How To Manage Your Money</a>
-                    <a class="dropdown-item" href="#">How To Make More Money</a>
+                    <a class="dropdown-item" href="index.php?about">About</a>
+                    <a class="dropdown-item" href="index.php?contact">Contact</a>
+                    <a class="dropdown-item" href="#">Advertise</a>
                   </div>
                 </li>
+
+                <?php
+
+                    $sql="SELECT * FROM category";
+                    $result=$conn->query($sql);
+                    while ($row = $result->fetch_assoc()) {
+                        $cat_id=$row['cat_id'];
+                        $cat_name=$row['cat_name'];
+                        $encryption = openssl_encrypt($cat_name, "AES-128-ECB", DONE);
+                    
+                ?>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Start Your Bussiness
+                      <?php echo $cat_name ?>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Bussiness Ideas</a>
-                    <a class="dropdown-item" href="#">Start-Up Basics</a>
-                    <a class="dropdown-item" href="#">Start-Up Funding</a>
-                    <a class="dropdown-item" href="#">How To Grow Your Bussiness</a>
+                    <?php
+
+                      $sql_1="SELECT * FROM sub_category where cat_id='$cat_id' ";
+                      $result_1=$conn->query($sql_1);
+                      while ($row_1 = $result_1->fetch_assoc()) {
+                          $sub_cat_id=$row_1['sub_cat_id'];
+                          $sub_cat_name=$row_1['sub_cat_name'];
+
+                    ?>
+                    <?php
+                      echo "<a class='dropdown-item' href='index.php?category&view=$sub_cat_id&$encryption '> $sub_cat_name </a>";
+                    ?>
+                    <?php
+                      }
+                    ?>
+                    
                   </div>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Inspire
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Motivational Quotes</a>
-                    <a class="dropdown-item" href="#">Entrepreneurial Stories To Inspire You</a>
-                    <a class="dropdown-item" href="#">Passion And Talent</a>
-                  </div>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Career
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Education</a>
-                    <a class="dropdown-item" href="#">Entrepreneur Ship Club</a>
-                    <a class="dropdown-item" href="#">Retirement</a>
-                  </div>
-                </li>                <li>
-                  <a href="index.php?post" class="nav-link text-left">Post</a>
-                </li>
-                <li><a href="index.php?contact" class="nav-link text-left">Contact</a></li>
-              </ul>                                                                                                                                                                                                                                                                                         
+                <?php
+                  }
+                ?>
+
+              </ul>                              
             </nav>
 
           </div>
@@ -214,7 +219,9 @@
         <form action="#" class="row align-items-center">
           <div class="col-md-5 mr-auto">
             <h2>Newsletter Subcribe</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis aspernatur ut at quae omnis pariatur obcaecati possimus nisi ea iste!</p>
+            <p>
+              to get latest news and ideas , subscribe to our News letter
+            </p>
           </div>
           <div class="col-md-6 ml-auto">
             <div class="d-flex">

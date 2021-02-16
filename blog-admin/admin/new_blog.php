@@ -33,6 +33,22 @@
                                                     </div>
 
                                                     <div class="form-group">
+                                                        <label for="cc-payment" class="control-label mb-1"> Sub Category Name</label>
+                                                        <select class="form-control"   id="sub_cat_id" name="sub_cat_id" data-placeholder="Choose one.." required>
+                                                            <option value="0 "> -- Select sub Category  -- </option>
+                                                            <?php
+                                                                $sql="SELECT * FROM sub_category  ";
+                                                                    $result=$conn->query($sql);
+                                                                    while ($row1 = $result->fetch_assoc()) {
+                                                                        ?>
+                                                                            <option value="<?php echo $row1['sub_cat_id']; ?>"><?php echo $row1['sub_cat_name']; ?></option>
+                                                                        <?php
+                                                                    }
+                                                            ?> 
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
                                                         <label for="cc-payment" class="control-label mb-1">Blog Short Description</label>
                                                         <textarea id="b_descr" name="b_descr" type="text" class="form-control" aria-required="true" aria-invalid="false" ></textarea>
                                                     </div>

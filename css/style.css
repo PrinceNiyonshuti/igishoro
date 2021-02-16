@@ -76,7 +76,7 @@ h1, h2, h3, h4, h5,
   padding: 2.5em 0; }
   @media (min-width: 768px) {
     .site-section {
-      padding: 7em 0; } }
+      padding:0; } }
   .site-section.site-section-sm {
     padding: 4em 0; }
 
@@ -569,7 +569,7 @@ h1, h2, h3, h4, h5,
   position: relative; }
   .owl-slide-3 .owl-stage, .owl-slide .owl-stage, .owl-style .owl-stage {
     padding-top: 30px;
-    padding-bottom: 30px; }
+    padding-bottom: 0px; }
   .owl-slide-3 .owl-nav .owl-prev,
   .owl-slide-3 .owl-nav .owl-next, .owl-slide .owl-nav .owl-prev,
   .owl-slide .owl-nav .owl-next, .owl-style .owl-nav .owl-prev,

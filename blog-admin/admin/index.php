@@ -81,13 +81,21 @@ if(isset($_SESSION['IGISHORO_BLOG_ADMIN_PANEL_PRINCE_2020']) == false){
                         <a href="index.php?home"><i class="menu-icon active fa fa-laptop"></i><strong><?php echo $names; ?></strong> Dashboard </a>
                     </li>
                     <li class="menu-title">Admin Elements</li><!-- /.menu-title -->
-
-                    <li>
-                        <a href="index.php?new_blog"> <i class="menu-icon fa fa-file"></i>New Blog</a>
+                    
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-file"></i>Blog</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-file"></i><a href="index.php?new_blog">New Blog</a></li>
+                            <li><i class="menu-icon fa fa-file-text"></i><a href="index.php?view_blog">View Blogs</a></li>
+                        </ul>
                     </li>
 
-                    <li>
-                        <a href="index.php?view_blog"> <i class="menu-icon fa fa-file-text"></i>View Blogs</a>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon ti-clipboard"></i>Category</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon ti-clipboard"></i><a href="index.php?category">Category</a></li>
+                            <li><i class="menu-icon ti-clipboard"></i><a href="index.php?sub_category">Sub-Category</a></li>
+                        </ul>
                     </li>            
                 	
                     
@@ -155,6 +163,16 @@ if(isset($_SESSION['IGISHORO_BLOG_ADMIN_PANEL_PRINCE_2020']) == false){
         elseif(isset($_GET['delete_blog']))
         {           
             include("delete_blog.php");
+        }
+
+        elseif(isset($_GET['category']))
+        {           
+            include("category.php");
+        }
+
+        elseif(isset($_GET['sub_category']))
+        {           
+            include("sub_category.php");
         }
 
         else

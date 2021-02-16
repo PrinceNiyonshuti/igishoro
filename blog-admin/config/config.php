@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "blog";
+$dbname = "igishoro";
 
 date_default_timezone_set('Africa/Cairo');
 
