@@ -57,58 +57,52 @@
 
           </div>
           <div class="col-lg-3">
-            <div class="section-title">
-              <h2>Popular Posts</h2>
-            </div>
-
-            <div class="trend-entry d-flex">
-              <div class="number align-self-start">01</div>
-              <div class="trend-contents">
-                <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                <div class="post-meta">
-                  <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                  <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
+                <div class="section-title">
+                  <h2>Popular Posts</h2>
                 </div>
-              </div>
-            </div>
 
-            <div class="trend-entry d-flex">
-              <div class="number align-self-start">02</div>
-              <div class="trend-contents">
-                <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                <div class="post-meta">
-                  <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                  <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                </div>
-              </div>
-            </div>
+                <?php
 
-            <div class="trend-entry d-flex">
-              <div class="number align-self-start">03</div>
-              <div class="trend-contents">
-                <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                <div class="post-meta">
-                  <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                  <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                </div>
-              </div>
-            </div>
+                  $sql1=" SELECT * FROM sub_category,wp_blog where sub_category.sub_cat_id=wp_blog.sub_cat_id ORDER BY wp_blog.blog_id DESC LIMIT 5 ";
+                  $result1=$conn->query($sql1);
+                  $number=0;
+                  while ($row1 = $result1->fetch_assoc()) {
+                  $b_id=$row1['blog_id'];
+                  $b_tittle=$row1['blog_tittle'];
+                  $b_date=$row1['blog_date'];
+                  $b_date = date('M d', strtotime($b_date));
+                  $encryption = openssl_encrypt($b_id, "AES-128-ECB", DONE);
+                  $number ++;
+                  
+                  if (empty($b_photo)) {
+                      $blog_cover = "blog.png";
+                  } else {
+                      $blog_cover = "$b_photo";
+                  }
+                ?>
 
-            <div class="trend-entry d-flex pl-0">
-              <div class="number align-self-start">04</div>
-              <div class="trend-contents">
-                <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                <div class="post-meta">
-                  <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                  <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                </div>
+                  <div class="trend-entry d-flex">
+                    <div class="number align-self-start"><?php echo $number; ?></div>
+                    <div class="trend-contents">
+                      <h2>
+                        <a href="index.php?blog_single&blog_holder=<?php echo $b_id ?>&<?php echo $encryption ?>"><?php echo $b_tittle ?></a>
+                      </h2>
+                      <div class="post-meta">
+                        <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#"><?php echo $row1['sub_cat_name']; ?></a></span>
+                        <span class="date-read"> <?php echo $b_date ?> <span class="mx-1">&bullet;</span></span>
+                      </div>
+                    </div>
+                  </div>
+
+                <?php
+                  }
+                ?>
+                
+                <!-- <p>
+                  <a href="#" class="more">See All Popular <span class="icon-keyboard_arrow_right"></span></a>
+                </p> -->
+
               </div>
-            </div>
-            
-            <p>
-              <a href="#" class="more">See All Popular <span class="icon-keyboard_arrow_right"></span></a>
-            </p>
-          </div>
         </div>
 
         <div class="row">
