@@ -140,7 +140,7 @@ include 'blog-admin/config/config.php'; ?>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <a class="dropdown-item" href="index.php?about">About</a>
                                             <a class="dropdown-item" href="index.php?contact">Contact</a>
-                                            <a class="dropdown-item" href="#">Advertise</a>
+                                        
                                         </div>
                                     </li>
 
@@ -226,7 +226,9 @@ include 'blog-admin/config/config.php'; ?>
         <div class="site-section subscribe bg-light">
             <div class="container">
                 
-                <?php if (isset($_POST['subscribe'])) {
+                <?php //Save new Subscriber
+
+                if (isset($_POST['subscribe'])) {
                     $sub_email = $_POST['sub_email'];
 
                     $sql = "INSERT INTO subscribers( cust_mail) VALUES ('$sub_email')";
@@ -278,7 +280,7 @@ include 'blog-admin/config/config.php'; ?>
                                 Copyright &copy;<script>
                                 document.write(new Date().getFullYear());
                                 </script> All rights reserved By Igishoro | This Blog is made by
-                                <a href="https://princeniyonshuti.github.io./" target="_blank">Jr Tech</a>
+                                <a href="https://github.com/PrinceNiyonshuti" target="_blank">Jr Tech</a>
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </p>
                         </div>
@@ -293,11 +295,11 @@ include 'blog-admin/config/config.php'; ?>
 
 
     <!-- loader -->
-    <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#ff5e15" />
-        </svg></div>
+    <!--<div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">-->
+    <!--        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />-->
+    <!--        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"-->
+    <!--            stroke="#ff5e15" />-->
+    <!--    </svg></div>-->
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -313,12 +315,11 @@ include 'blog-admin/config/config.php'; ?>
     <script src="js/jquery.fancybox.min.js"></script>
     <script src="js/jquery.sticky.js"></script>
     <script src="js/jquery.mb.YTPlayer.min.js"></script>
+    
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60798e7a98f0f66b"></script>
 
-    <!-- Go to www.addthis.com/dashboard to customize your tools -->
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60798e7a98f0f66b"></script>
-
-
-    <script src="js/main.js"></script>
+                
 
 </body>
 

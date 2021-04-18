@@ -464,6 +464,11 @@
                 $toolbarList.append($toolbarElement.clone().append($btnFontColor));
             }
 
+            /* Urls */
+            if(settings.urls === true) {
+                $toolbarList.append($toolbarElement.clone().append($btnURLs));
+            }
+
             if(settings.table === true) {
                 $toolbarList.append($toolbarElement.clone().append($btnTable));
             }

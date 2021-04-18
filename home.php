@@ -72,7 +72,7 @@
                                 <p class="mb-3">
                                     <?php
                                         echo substr($b_descr, 0, 123);
-                                        ?>
+                                    ?>
                                 </p>
                                 <div class="post-meta">
                                     <span class="d-block"><a href="#">Emmanuel</a> in <a

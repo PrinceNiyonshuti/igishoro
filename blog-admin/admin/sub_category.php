@@ -19,19 +19,15 @@
 
 
 <?php
+//Save new Sub Category
 
-    //Save new Sub Category 
+if (isset($_POST['save_sub_category'])) {
+    $cat_id = $_POST['cat_id'];
+    $sub_cat_name = $_POST['sub_cat_name'];
 
-    if(ISSET($_POST['save_sub_category'])){
-            
-        $cat_id = $_POST['cat_id'];
-        $sub_cat_name = $_POST['sub_cat_name'];
-                                
-        $sql="INSERT INTO sub_category( cat_id, sub_cat_name) VALUES ('$cat_id','$sub_cat_name')";
+    $sql = "INSERT INTO sub_category( cat_id, sub_cat_name) VALUES ('$cat_id','$sub_cat_name')";
 
-        if ($conn->query($sql)==TRUE) 
-        {
-            ?>
+    if ($conn->query($sql) == true) { ?>
             <div class="content">
                 <div class="row">
                     <div class="col-lg-12">
@@ -45,11 +41,7 @@
                     </div>
                 </div>
             </div>
-            <?php
-        }
-        else
-        {
-            ?>
+            <?php } else { ?>
             <div class="content">
                 <div class="row">
                     <div class="col-lg-12">
@@ -63,21 +55,17 @@
                     </div>
                 </div>
             </div>
-            <?php
-        }
-    }
+            <?php }
+}
 
-    //Delete Sub Catogory
+//Delete Sub Catogory
 
-    if(ISSET($_GET['data_holder'])){
+if (isset($_GET['data_holder'])) {
+    $data_holder = $_GET['data_holder'];
 
-        $data_holder=$_GET['data_holder'];
+    $sql = "DELETE FROM sub_category WHERE sub_cat_id = '$data_holder' ";
 
-        $sql="DELETE FROM sub_category WHERE sub_cat_id = '$data_holder' ";
-
-        if ($conn->query($sql)==TRUE) 
-        {
-            ?>
+    if ($conn->query($sql) == true) { ?>
             <div class="content">
                 <div class="row">
                     <div class="col-lg-12">
@@ -91,11 +79,7 @@
                     </div>
                 </div>
             </div>
-            <?php
-        }
-        else
-        {
-            ?>
+            <?php } else { ?>
             <div class="content">
                 <div class="row">
                     <div class="col-lg-12">
@@ -109,24 +93,19 @@
                     </div>
                 </div>
             </div>
-            <?php
-        }
+            <?php }
+}
 
-    }
+//Update Current Sub Category Data
 
-    //Update Current Sub Category Data
+if (isset($_POST['update_sub_category_data'])) {
+    $cat_id = $_POST['cat_id'];
+    $sub_cat_id = $_POST['sub_cat_id'];
+    $sub_cat_name = $_POST['sub_cat_name'];
 
-    if(ISSET($_POST['update_sub_category_data'])){
-            
-        $cat_id = $_POST['cat_id'];
-        $sub_cat_id = $_POST['sub_cat_id'];
-        $sub_cat_name = $_POST['sub_cat_name'];
-                                
-        $sql=" UPDATE sub_category SET sub_cat_name='$sub_cat_name',cat_id='$cat_id' WHERE sub_cat_id='$sub_cat_id' ";
+    $sql = " UPDATE sub_category SET sub_cat_name='$sub_cat_name',cat_id='$cat_id' WHERE sub_cat_id='$sub_cat_id' ";
 
-        if ($conn->query($sql)==TRUE) 
-        {
-            ?>
+    if ($conn->query($sql) == true) { ?>
             <div class="content">
                 <div class="row">
                     <div class="col-lg-12">
@@ -140,11 +119,7 @@
                     </div>
                 </div>
             </div>
-            <?php
-        }
-        else
-        {
-            ?>
+            <?php } else { ?>
             <div class="content">
                 <div class="row">
                     <div class="col-lg-12">
@@ -158,20 +133,14 @@
                     </div>
                 </div>
             </div>
-            <?php
-        }
-    }
+            <?php }
+}
 ?>
 
-<?php 
+<?php // Update Sub Category
 
-    // Update Sub Category
-
-    if(ISSET($_POST['update_sub_category'])){
-
-        $sub_cat_id = $_POST['sub_cat_id'];
-    
-        ?>
+if (isset($_POST['update_sub_category'])) {
+    $sub_cat_id = $_POST['sub_cat_id']; ?>
 
             <div class="row">
                 <div class="col-md-12">
@@ -184,16 +153,14 @@
                                     <div class="row">
 
                                     <?php
-
-                                        $sql="SELECT * FROM sub_category,category where sub_category.cat_id=category.cat_id and sub_category.sub_cat_id='$sub_cat_id' ";
-                                        $result=$conn->query($sql);
-                                        while ($row3 = $result->fetch_assoc()) {
-                                            $sub_cat_id=$row3['sub_cat_id'];
-                                            $cat_id=$row3['cat_id'];
-                                            $cat_name=$row3['cat_name'];
-                                            $sub_cat_name=$row3['sub_cat_name'];
-                                        }
-
+                                    $sql = "SELECT * FROM sub_category,category where sub_category.cat_id=category.cat_id and sub_category.sub_cat_id='$sub_cat_id' ";
+                                    $result = $conn->query($sql);
+                                    while ($row3 = $result->fetch_assoc()) {
+                                        $sub_cat_id = $row3['sub_cat_id'];
+                                        $cat_id = $row3['cat_id'];
+                                        $cat_name = $row3['cat_name'];
+                                        $sub_cat_name = $row3['sub_cat_name'];
+                                    }
                                     ?>
 
                                         <div class="col-lg-4">
@@ -202,13 +169,19 @@
                                                 <select class="form-control"  name="cat_id" data-placeholder="Choose one.." required>
                                                     <option value="<?php echo $cat_id; ?>"><?php echo $cat_name; ?></option>
                                                     <?php
-                                                        $sql="SELECT * FROM category where cat_id != '$cat_id' ";
-                                                            $result=$conn->query($sql);
-                                                            while ($row1 = $result->fetch_assoc()) {
-                                                                ?>
-                                                                    <option value="<?php echo $row1['cat_id']; ?>"><?php echo $row1['cat_name']; ?></option>
-                                                                <?php
-                                                            }
+                                                    $sql = "SELECT * FROM category where cat_id != '$cat_id' ";
+                                                    $result = $conn->query(
+                                                        $sql
+                                                    );
+                                                    while (
+                                                        $row1 = $result->fetch_assoc()
+                                                    ) { ?>
+                                                                    <option value="<?php echo $row1[
+                                                                        'cat_id'
+                                                                    ]; ?>"><?php echo $row1[
+    'cat_name'
+]; ?></option>
+                                                                <?php }
                                                     ?> 
                                                 </select>
                                             </div>
@@ -217,8 +190,8 @@
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Sub Category Name</label>
-                                                <input id="sub_cat_id" name="sub_cat_id" value="<?php echo $sub_cat_id ?>" type="hidden"  >
-                                                <input id="sub_cat_name" name="sub_cat_name" value="<?php echo $sub_cat_name ?>" type="text" class="form-control" aria-required="true" aria-invalid="false" >
+                                                <input id="sub_cat_id" name="sub_cat_id" value="<?php echo $sub_cat_id; ?>" type="hidden"  >
+                                                <input id="sub_cat_name" name="sub_cat_name" value="<?php echo $sub_cat_name; ?>" type="text" class="form-control" aria-required="true" aria-invalid="false" >
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
@@ -237,10 +210,8 @@
             </div>
 
         <?php
-
-    }else{
-        
-        ?>
+} else {
+     ?>
 
             <div class="row">
                 <div class="col-md-12">
@@ -258,13 +229,20 @@
                                                 <select class="form-control"  name="cat_id" data-placeholder="Choose one.." required>
                                                     <option value="0">--- Select Category ---</option>
                                                     <?php
-                                                        $sql="SELECT * FROM category ";
-                                                            $result=$conn->query($sql);
-                                                            while ($row = $result->fetch_assoc()) {
-                                                                ?>
-                                                                    <option value="<?php echo $row['cat_id']; ?>"><?php echo $row['cat_name']; ?></option>
-                                                                <?php
-                                                            }
+                                                    $sql =
+                                                        'SELECT * FROM category ';
+                                                    $result = $conn->query(
+                                                        $sql
+                                                    );
+                                                    while (
+                                                        $row = $result->fetch_assoc()
+                                                    ) { ?>
+                                                                    <option value="<?php echo $row[
+                                                                        'cat_id'
+                                                                    ]; ?>"><?php echo $row[
+    'cat_name'
+]; ?></option>
+                                                                <?php }
                                                     ?> 
                                                 </select>
                                             </div>
@@ -292,9 +270,7 @@
             </div>
 
         <?php
-
-    }
-?>
+} ?>
 
 <div class="col-lg-12">
     <div class="card">
@@ -307,47 +283,49 @@
                     <hr>
 
                     <?php
-                        echo "<div class='table-stats order-table ov-h'>";
-                            echo "<table id='bootstrap-data-table' class='table'>";
-                                echo "<thead>";
-                                    echo "<th>Sub Category Name</th>";
-                                    echo "<th>Category Name</th>";
-                                    echo "<th>Action</th>";
-                                    echo "<th>Action</th>";
-                                    echo "</tr>";
-                                echo "</thead>";
-                                echo "<tbody>";
-                                    $sql=" SELECT * FROM sub_category,category WHERE sub_category.cat_id=category.cat_id ";
-                                        $result=$conn->query($sql);
-                                        while ($row = $result->fetch_assoc()) {
-                                            $sub_cat_id=$row['sub_cat_id'];
-                                            $sub_cat_name=$row['sub_cat_name'];
-                                            $cat_name=$row['cat_name'];
+                    echo "<div class='table-stats order-table ov-h'>";
+                    echo "<table id='bootstrap-data-table' class='table'>";
+                    echo '<thead>';
+                    echo '<th>Sub Category Name</th>';
+                    echo '<th>Category Name</th>';
+                    echo '<th>Action</th>';
+                    echo '<th>Action</th>';
+                    echo '</tr>';
+                    echo '</thead>';
+                    echo '<tbody>';
+                    $sql =
+                        ' SELECT * FROM sub_category,category WHERE sub_category.cat_id=category.cat_id ';
+                    $result = $conn->query($sql);
+                    while ($row = $result->fetch_assoc()) {
 
-                                    echo "<tr>";
-                                        echo "<td>".$row['sub_cat_name']."</td>";
-                                        echo "<td> - ".$row['cat_name']." - </td>";
-                                        echo "<td>";
-                                            ?>
+                        $sub_cat_id = $row['sub_cat_id'];
+                        $sub_cat_name = $row['sub_cat_name'];
+                        $cat_name = $row['cat_name'];
+
+                        echo '<tr>';
+                        echo '<td>' . $row['sub_cat_name'] . '</td>';
+                        echo '<td> - ' . $row['cat_name'] . ' - </td>';
+                        echo '<td>';
+                        ?>
                                                 <form class="form-horizontal" method="POST" action="">
 
-                                                    <input id="sub_cat_id" name="sub_cat_id" value="<?php echo $sub_cat_id ?>" type="hidden"  >
+                                                    <input id="sub_cat_id" name="sub_cat_id" value="<?php echo $sub_cat_id; ?>" type="hidden"  >
                                                     <button type="submit" name="update_sub_category" class="btn_link" >
                                                         <i class='menu-icon fa fa-file'></i> Edit</a>
                                                     </button>
                                                 </form>
                                             
                                             <?php
-                                            
-                                        echo "</td>";
-                                        echo "<td>
+                                            echo '</td>';
+                                            echo "<td>
                                             <a href='index.php?sub_category&data_holder=$sub_cat_id'><i class='menu-icon fa fa-trash'></i> Delete</a>
                                         </td>";
-                                    echo "</tr>";
-                                        }
-                                echo "</tbody>";
-                            echo "</table>";
-                        echo "</div>";
+                                            echo '</tr>';
+
+                    }
+                    echo '</tbody>';
+                    echo '</table>';
+                    echo '</div>';
                     ?>
                     <hr>
 
