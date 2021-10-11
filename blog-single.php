@@ -133,6 +133,8 @@ if (empty($blog_data)) {
                 <!-- <p>
                     <a href="#" class="more">See All Popular <span class="icon-keyboard_arrow_right"></span></a>
                 </p> -->
+
+                
             </div>
 
 
